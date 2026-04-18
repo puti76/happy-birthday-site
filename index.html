@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love 💕</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Georgia',serif; overflow-x:hidden; min-height:100vh; }
+
+  #heartLayer { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999; overflow:hidden; }
+  .fheart { position:absolute; top:-60px; animation:fallPetal linear forwards; user-select:none; line-height:1; will-change:transform,opacity; }
+  @keyframes fallPetal {
+    0%   { transform:translateY(0)     translateX(0px)   rotate(0deg)   scale(1);    opacity:1; }
+    20%  { transform:translateY(20vh)  translateX(18px)  rotate(25deg)  scale(1.05); opacity:0.95; }
+    40%  { transform:translateY(40vh)  translateX(-14px) rotate(-15deg) scale(1.08); opacity:0.9; }
+    60%  { transform:translateY(60vh)  translateX(20px)  rotate(30deg)  scale(1.03); opacity:0.8; }
+    80%  { transform:translateY(80vh)  translateX(-10px) rotate(-10deg) scale(0.95); opacity:0.5; }
+    100% { transform:translateY(108vh) translateX(8px)   rotate(20deg)  scale(0.85); opacity:0; }
+  }
+
+  .page { display:none; min-height:100vh; width:100%; position:relative; flex-direction:column; align-items:center; justify-content:center; }
+  .page.active { display:flex; }
+
+  /* PAGE 1 */
+  #page1 { background:linear-gradient(150deg,#ebdce2,#bc4c6e,#da166b,#d470ac,#ea9ebf); }
+  .page1-content { z-index:10; text-align:center; padding:2rem; max-width:700px; }
+  .page1-content h1 { font-size:clamp(2rem,6vw,3.5rem); color:#fff; text-shadow:0 0 25px #4fc3f7,0 0 55px #0288d1; margin-bottom:1.5rem; letter-spacing:2px; }
+  .romantic-lines p { color:#cce8ff; font-size:clamp(0.95rem,2.3vw,1.25rem); line-height:2.15; font-style:italic; margin:0.25rem 0; text-shadow:0 0 10px rgba(79,195,247,0.35); }
+  .romantic-lines p span { color:#81d4fa; font-weight:bold; }
+  .cta-btn { margin-top:2.5rem; padding:1rem 2.5rem; font-size:1.15rem; font-family:Georgia,serif; background:linear-gradient(135deg,#0277bd,#01579b,#003c74); color:#e1f5fe; border:1.5px solid #4fc3f7; border-radius:50px; cursor:pointer; box-shadow:0 0 22px rgba(79,195,247,0.6),0 0 50px rgba(2,119,189,0.4); transition:all 0.3s; letter-spacing:1px; }
+  .cta-btn:hover { transform:scale(1.08); box-shadow:0 0 40px rgba(79,195,247,0.9),0 0 80px rgba(2,119,189,0.5); }
+
+  /* PAGE 2 */
+  #page2 { background:linear-gradient(150deg,#050310,#0d0828,#160c40,#1a0f55,#0e0830); }
+  .page2-content { z-index:10; text-align:center; padding:2rem; max-width:600px; }
+  .page2-content h2 { font-size:clamp(1.8rem,5vw,3rem); color:#fff; text-shadow:0 0 28px #7986cb,0 0 55px #3949ab; margin-bottom:1rem; }
+  .page2-content p { color:#c5cae9; font-size:1.15rem; margin-bottom:1.4rem; font-style:italic; }
+  .memories-btn { padding:1rem 2.5rem; font-size:1.1rem; font-family:Georgia,serif; background:linear-gradient(135deg,#283593,#1a237e,#0d1660); color:#e8eaf6; border:1.5px solid #7986cb; border-radius:50px; cursor:pointer; box-shadow:0 0 22px rgba(121,134,203,0.6); transition:all 0.3s; }
+  .memories-btn:hover { transform:scale(1.08); box-shadow:0 0 45px rgba(121,134,203,0.9); }
+
+  /* PAGE 3 */
+  #page3 { background:linear-gradient(150deg,#001020,#002040,#003070,#001a40); }
+  .page3-content { z-index:10; text-align:center; padding:2rem; max-width:480px; width:90%; }
+  .page3-content h2 { font-size:clamp(1.5rem,4vw,2.2rem); color:#fff; margin-bottom:0.5rem; text-shadow:0 0 20px #4fc3f7; }
+  .page3-content .sub { color:#90caf9; font-style:italic; margin-bottom:2rem; }
+  .login-box { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.2); border-radius:20px; padding:2rem; backdrop-filter:blur(10px); }
+  .field-wrap { position:relative; margin-bottom:1.2rem; }
+  .login-box input { width:100%; padding:0.9rem 1.2rem; border-radius:12px; border:1.5px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); color:#fff; font-size:1rem; font-family:Georgia,serif; outline:none; transition:border 0.3s; }
+  .login-box input::placeholder { color:rgba(200,225,255,0.75); font-style:italic; }
+  .login-box input:focus { border-color:#4fc3f7; box-shadow:0 0 15px rgba(79,195,247,0.4); }
+.hint-popup {display:none;position:relative;   /* change from absolute */top:auto;left:auto;transform:none;margin-top:8px;      /* space between password & hint */width:100%;
+}
+  .hint-popup.show { display:block; }
+  .hint-popup p { color:#cce8ff; font-style:italic; font-size:0.82rem; line-height:1.65; margin-bottom:0.35rem; }
+  .hint-popup p:last-child { margin-bottom:0; }
+  .hint-popup p strong { color:#4fc3f7; }
+  .submit-wrap { display:flex; align-items:center; gap:1rem; margin-top:1.5rem; flex-wrap:wrap; }
+  .login-submit { flex:1; padding:0.9rem; font-size:1rem; font-family:Georgia,serif; background:linear-gradient(135deg,#0277bd,#01579b); color:#e1f5fe; border:none; border-radius:12px; cursor:pointer; transition:all 0.3s; }
+  .login-submit:hover { box-shadow:0 0 20px rgba(79,195,247,0.7); transform:scale(1.03); }
+  .warning-box { background:linear-gradient(135deg,#3e0000,#7f0000); border:1px solid #ef5350; border-radius:12px; padding:0.7rem 1rem; color:#ffcdd2; font-size:0.9rem; display:none; flex-direction:column; align-items:center; gap:4px; min-width:130px; }
+  .warning-box.show { display:flex; }
+  .warning-box .moves { font-size:1.4rem; font-weight:bold; color:#ff5252; }
+  .warning-box .moves-label { font-size:0.75rem; color:#ef9a9a; }
+
+  /* PAGE 4 */
+  #page4 { background:linear-gradient(150deg,#020818,#041230,#071d50,#04122e); min-height:100vh; padding:2rem 1rem; }
+  .memories-header { z-index:10; text-align:center; margin-bottom:2rem; }
+  .memories-header h2 { font-size:clamp(2rem,5vw,3rem); color:#fff; text-shadow:0 0 30px #4fc3f7; margin-bottom:0.5rem; }
+  .memories-header p { color:#b3d8f5; font-style:italic; }
+  .memories-grid { z-index:10; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.2rem; width:100%; max-width:900px; margin-bottom:3rem; }
+  .memory-card { aspect-ratio:1; border-radius:16px; overflow:hidden; cursor:pointer; position:relative; border:3px solid transparent; transition:transform 0.3s; }
+  .memory-card:hover { transform:scale(1.05); }
+  .memory-card img { width:100%; height:100%; object-fit:cover; display:block; }
+  .memory-card .mem-label { position:absolute; bottom:0; left:0; right:0; background:linear-gradient(transparent,rgba(0,0,0,0.75)); color:#cce8ff; padding:1rem 0.7rem 0.7rem; font-size:0.85rem; font-style:italic; }
+  @keyframes borderGlow {
+    0%   { border-color:#4fc3f7; box-shadow:0 0 10px #4fc3f7,0 0 25px #0288d1; }
+    33%  { border-color:#7986cb; box-shadow:0 0 15px #7986cb,0 0 35px #3949ab; }
+    66%  { border-color:#0288d1; box-shadow:0 0 20px #0288d1,0 0 40px #01579b; }
+    100% { border-color:#4fc3f7; box-shadow:0 0 10px #4fc3f7,0 0 25px #0288d1; }
+  }
+  .memory-card.glow { animation:borderGlow 1.5s infinite; }
+  .final-btn { z-index:10; padding:1rem 2.5rem; font-size:1.2rem; font-family:Georgia,serif; background:linear-gradient(135deg,#0277bd,#283593,#01579b); color:#e1f5fe; border:1.5px solid #4fc3f7; border-radius:50px; cursor:pointer; animation:pulsebtn 2s infinite; letter-spacing:1px; }
+  @keyframes pulsebtn { 0%,100%{box-shadow:0 0 28px rgba(79,195,247,0.6),0 0 55px rgba(2,119,189,0.4)} 50%{box-shadow:0 0 50px rgba(79,195,247,0.95),0 0 90px rgba(2,119,189,0.7)} }
+  .final-btn:hover { transform:scale(1.08); }
+
+  .lightbox { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:10000; align-items:center; justify-content:center; cursor:pointer; }
+  .lightbox.show { display:flex; }
+  .lightbox img { max-width:88vw; max-height:82vh; border-radius:16px; object-fit:contain; animation:borderGlow 1.5s infinite; border:4px solid #4fc3f7; }
+  .lightbox-close { position:fixed; top:1.5rem; right:1.5rem; color:#cce8ff; font-size:1.8rem; cursor:pointer; z-index:10001; background:rgba(2,119,189,0.55); width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid #4fc3f7; }
+
+  /* PAGE 5 */
+  #page5 { background:linear-gradient(150deg,#e58ded,#e05fa2,#f05a84,#fa87be); }
+  .bday-content { z-index:10; text-align:center; padding:2rem; max-width:750px; position:relative; }
+  .bday-content h1 { font-size:clamp(2rem,6vw,4rem); color:#fff; text-shadow:0 0 30px #4fc3f7,0 0 80px #0288d1; margin-bottom:0.5rem; animation:textPulse 2s infinite; }
+  @keyframes textPulse { 0%,100%{text-shadow:0 0 30px #4fc3f7,0 0 80px #0288d1} 50%{text-shadow:0 0 60px #ffd700,0 0 120px #4fc3f7,0 0 180px #0288d1} }
+  .bday-img-wrap { margin:1.5rem auto; width:min(320px,85vw); }
+  .bday-img-wrap img { width:100%; border-radius:5%; border:5px solid #4fc3f7; animation:borderGlow 2s infinite; }
+  .bday-msg { color:#cce8ff; font-size:clamp(1rem,2.5vw,1.2rem); font-style:italic; line-height:2.1; margin:1.5rem 0; }
+  .bday-msg span { color:#81d4fa; font-weight:bold; font-size:1.1em; }
+
+  /* music indicator */
+  .music-bar { position:fixed; bottom:1.2rem; right:1.2rem; z-index:10001; display:none; align-items:center; gap:8px; background:rgba(2,40,80,0.75); border:1px solid #4fc3f7; border-radius:30px; padding:0.5rem 1rem; backdrop-filter:blur(8px); }
+  .music-bar.show { display:flex; }
+  .music-bar span { color:#cce8ff; font-size:0.82rem; font-style:italic; }
+  .bars { display:flex; align-items:flex-end; gap:3px; height:18px; }
+  .bars div { width:4px; background:#4fc3f7; border-radius:2px; animation:bounce 0.8s ease-in-out infinite; }
+  .bars div:nth-child(1){ height:8px;  animation-delay:0s; }
+  .bars div:nth-child(2){ height:14px; animation-delay:0.15s; }
+  .bars div:nth-child(3){ height:10px; animation-delay:0.1s; }
+  .bars div:nth-child(4){ height:16px; animation-delay:0.15s; }
+  .bars div:nth-child(5){ height:7px;  animation-delay:0.1s; }
+  @keyframes bounce { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.35)} }
+
+  canvas#confetti { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1; }
+</style>
+</head>
+
+<body>
+
+<div id="heartLayer"></div>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+  <div class="page1-content">
+    <h1>💕 My Dearest Love 💕</h1>
+    <div class="romantic-lines">
+      <p>💫 In a world full of billions, my eyes always find <span>only you</span>.</p>
+      <p>💝 Every heartbeat whispers your name — <span>softly, endlessly.</span></p>
+      <p>🌟 You are my favourite chapter in the story of <span>my life.</span></p>
+      <p>💖 If stars fell every time I thought of you, <span>the sky would be empty.</span></p>
+      <p>🥰 You didn't just walk into my life — <span>you became my life.</span></p>
+      <p>🌹 Loving you is the easiest thing I've ever done, <span>and the best.</span></p>
+    </div>
+    <button class="cta-btn" onclick="goTo(2)">Click Me 💌</button>
+  </div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+  <div class="page2-content">
+    <h2>🌸 Our Beautiful Journey 🌸</h2>
+    <p>Every moment with you is a treasure I hold close to my heart forever...</p>
+    <p style="color:#9fa8da;font-size:1rem;margin-bottom:2rem;">I've saved something very special just for you 💜</p>
+    <button class="memories-btn" onclick="goTo(3)">💌 To See Our Memories — Click Here</button>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+  <div class="page3-content">
+    <h2>💝 Secret Memories Vault</h2>
+    <p class="sub">Only my love can unlock this... 💕</p>
+    <div class="login-box">
+      <div class="field-wrap">
+        <input type="text" id="username" placeholder="Enter your name baby 🌸" autocomplete="off"
+          oninput="this.value=this.value.toUpperCase()">
+      </div>
+      <div class="field-wrap">
+        <input type="password" id="password" placeholder="Click here for hint 💌" autocomplete="off"
+          onfocus="document.getElementById('hintPopup').classList.add('show')"
+          onblur="setTimeout(()=>document.getElementById('hintPopup').classList.remove('show'),200)">
+        <div class="hint-popup" id="hintPopup">
+          <p>💕 <strong>Hints for my love:</strong></p>
+          <p>🥰 First 4 letters where we 😘 first time. (Caps Letter)</p>
+          <p>🎁 My first gift to you. (Small Letter)</p>
+          <p>🫂 Starting date and year of our Relationship.</p>
+          <p>📁 Your folder name in my computer.</p> 
+          <p></p>
+        
+          <p style="color:#4fc3f7;">✨ You'll know it 💌</p>
+        </div>
+      </div>
+      <div class="submit-wrap">
+        <button class="login-submit" onclick="checkLogin(); return false;">Unlock Our Memories 💕</button>
+        <div class="warning-box" id="warningBox">
+          <div class="moves" id="movesCount">3</div>
+          <div class="moves-label">moves left</div>
+          <div style="font-size:0.72rem;color:#ef9a9a;margin-top:2px;">Try again baby 🥺</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+  <div class="memories-header">
+    <h2>💝 Our Precious Memories 💝</h2>
+    <p>Every photo tells a story of us... click on any to relive it 🌸</p>
+  </div>
+  <div class="memories-grid" id="memoriesGrid"></div>
+  <button class="final-btn" onclick="goTo(5)">🎁 Final Surprise ✨</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+  <canvas id="confetti"></canvas>
+  <div class="bday-content">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <h1 style="font-size:clamp(1.4rem,4vw,2.4rem);color:#ffd700;animation:textPulse 2s infinite;margin-top:0.4rem;">to My Golden ✨ Sunshine 💕🌹</h1>
+    <div class="bday-img-wrap">
+      <img src="img/happyBirthday.png" alt="Birthday">
+    </div>
+    <div class="bday-msg">
+      <p>💖 <span>Today</span> is not just another day — it is the day the universe gifted me <span>you</span>, the most precious blessing of my life.</p>
+
+<p>✨ You are the reason my world feels brighter, my heart feels lighter, and my life feels complete.</p>
+
+<p>🌸 With you, every ordinary moment becomes magical, every smile feels warmer, and every dream feels closer.</p>
+
+<p>💫 You are my peace in chaos, my strength in weakness, and my happiness in every heartbeat.</p>
+
+<p>🌹 No matter where life takes us, one thing will never change — my love for you will only grow deeper with time.</p>
+
+<p>🎊 On your special day, I wish you endless happiness, beautiful surprises, and a lifetime filled with love.</p>
+
+<p class="love-line">💞 I love you more than yesterday, but less than tomorrow.</p>
+
+<p class="sign">— Forever yours, always and endlessly 💖</p>
+    </div>
+  </div>
+</div>
+
+<!-- Music player -->
+<audio id="bdayMusic" preload="auto">
+  <source src="https://cdn.pixabay.com/audio/2026/01/22/audio_25e64d5b94.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Music indicator -->
+<div class="music-bar" id="musicBar">
+  <div class="bars">
+    <div></div><div></div><div></div><div></div><div></div>
+  </div>
+  <span>Playing Music 🎵</span>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lightboxImg" src="" alt="Memory">
+</div>
+
+<script>
+var _0xfecc8f=(324032^324032)+(188600^188604);const PAGE_PETALS={1:["\uD83E\uDE77","\u2764\uFE0F","\uD83D\uDC97","\uD83D\uDC96","\uD83D\uDC95","\uDC9E\uD83D".split("").reverse().join(""),"\uD83D\uDC93","\uDF39\uD83C".split("").reverse().join(""),"\uD83C\uDF38","\uDCAB\uD83D".split("").reverse().join(""),"\u2728","\uD83C\uDF1F"],2:["\uD83D\uDC9C","\uD83D\uDC99","\uDE75\uD83E".split("").reverse().join(""),"\uD83E\uDDE1","\uDC9B\uD83D".split("").reverse().join(""),"\uD83D\uDC9A","\uDF38\uD83C".split("").reverse().join(""),"\uDF3C\uD83C".split("").reverse().join(""),"\uDEBB\uD83E".split("").reverse().join(""),"\uDC9D\uD83D".split("").reverse().join(""),"\uD83D\uDC98","\uD83C\uDF39"],3:["\uDC95\uD83D".split("").reverse().join(""),"\uFE0F\u2763".split("").reverse().join(""),"\uDC97\uD83D".split("").reverse().join(""),"\uDC96\uD83D".split("").reverse().join(""),"\uD83D\uDC8C","\uDF38\uD83C".split("").reverse().join(""),"\u2728","\uD83D\uDCAB","\uD83C\uDF1F","\uDE77\uD83E".split("").reverse().join(""),"\u2764\uFE0F","\uD83D\uDC9D"],4:["\uDF38\uD83C".split("").reverse().join(""),"\uDF39\uD83C".split("").reverse().join(""),"\uD83C\uDF3C","\uD83C\uDF41","\uD83E\uDEBB","\uD83D\uDC9B","\uD83E\uDDE1","\u2764\uFE0F","\uD83E\uDE77","\uDC9A\uD83D".split("").reverse().join(""),"\uDE75\uD83E".split("").reverse().join(""),"\uDC99\uD83D".split("").reverse().join("")],5:["\uDF8A\uD83C".split("").reverse().join(""),"\uDF89\uD83C".split("").reverse().join(""),"\uD83C\uDF88","\uDF82\uD83C".split("").reverse().join(""),"\uDF70\uD83C".split("").reverse().join(""),"\uD83C\uDF81","\uDC8C\uD83D".split("").reverse().join(""),"\uD83C\uDF38","\uDF39\uD83C".split("").reverse().join(""),"\u2728","\uD83D\uDCAB","\uD83C\uDF1F","\uDE77\uD83E".split("").reverse().join(""),"\uFE0F\u2764".split("").reverse().join(""),"\uD83D\uDC95","\uDD73\uD83E".split("").reverse().join(""),"\uD83D\uDE0D","\uDD70\uD83E".split("").reverse().join("")]};_0xfecc8f=(857760^857762)+(843696^843702);let _0x8fc;let currentPage=823689^823688;_0x8fc=621147^621138;let petalInterval=null;var _0xe8c4a=(238001^238008)+(562478^562473);let isAuthenticated=false;_0xe8c4a="okhngb".split("").reverse().join("");function spawnPetal(){var _0x319b9a=(897655^897654)+(687514^687507);const _0xf7d=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("reyaLtraeh".split("").reverse().join(""));_0x319b9a=370674^370679;const _0xf_0x9ab=PAGE_PETALS[currentPage]||["\uDE77\uD83E".split("").reverse().join(""),"\uD83D\uDC95","\uD83C\uDF38"];var _0x_0x2b4=(889414^889408)+(565235^565232);const _0xafg69e=document['\u0063\u0072\u0065\u0061\u0074\u0065\u0045\u006C\u0065\u006D\u0065\u006E\u0074']("\u0073\u0070\u0061\u006E");_0x_0x2b4='\u006A\u0066\u006C\u0065\u0067\u0067';_0xafg69e['\u0063\u006C\u0061\u0073\u0073\u004E\u0061\u006D\u0065']="\u0066\u0068\u0065\u0061\u0072\u0074";_0xafg69e['\u0074\u0065\u0078\u0074\u0043\u006F\u006E\u0074\u0065\u006E\u0074']=_0xf_0x9ab[Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*_0xf_0x9ab['\u006C\u0065\u006E\u0067\u0074\u0068'])];const _0x7aaa=(414547^414531)+Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(742369^742389);const _0x8f8f6c=(708037^708033)+Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(690749^690746);_0xafg69e['\u0073\u0074\u0079\u006C\u0065']['\u0063\u0073\u0073\u0054\u0065\u0078\u0074']=`left:${Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(247625^247595)}vw;`+`font-size:${_0x7aaa}px;`+`animation-name:fallPetal;`+`animation-duration:${_0x8f8f6c}s;`+`animation-timing-function:ease-in;`+`animation-fill-mode:forwards;`;_0xf7d['\u0061\u0070\u0070\u0065\u006E\u0064\u0043\u0068\u0069\u006C\u0064'](_0xafg69e);setTimeout(()=>{if(_0xafg69e['\u0070\u0061\u0072\u0065\u006E\u0074\u004E\u006F\u0064\u0065'])_0xafg69e['\u0070\u0061\u0072\u0065\u006E\u0074\u004E\u006F\u0064\u0065']['\u0072\u0065\u006D\u006F\u0076\u0065\u0043\u0068\u0069\u006C\u0064'](_0xafg69e);},_0x8f8f6c*(284792^285584)+(413206^413498));}for(let i=946714^946714;i<(281890^281910);i++)setTimeout(spawnPetal,i*(652347^652395));setInterval(spawnPetal,977508^977676);function goTo(page){if((page===(112094^112090)||page===(366485^366480))&&!isAuthenticated)return;document['\u0071\u0075\u0065\u0072\u0079\u0053\u0065\u006C\u0065\u0063\u0074\u006F\u0072\u0041\u006C\u006C']("egap.".split("").reverse().join(""))['\u0066\u006F\u0072\u0045\u0061\u0063\u0068'](p=>p['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("evitca".split("").reverse().join("")));document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0070\u0061\u0067\u0065"+page)['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0061\u0064\u0064']("\u0061\u0063\u0074\u0069\u0076\u0065");currentPage=page;window['\u0073\u0063\u0072\u006F\u006C\u006C\u0054\u006F'](748266^748266,208144^208144);for(let i=162930^162930;i<(175337^175353);i++)setTimeout(spawnPetal,i*(459356^459371));if(page===(630876^630872))setupMemories();if(page===(646730^646735)){startConfetti();playBirthdayMusic();}}const CORRECT_USER_HASH="\u0033\u0030\u0030\u0035\u0062\u0034\u0033\u0036\u0035\u0034\u0063\u0063\u0064\u0033\u0036\u0037\u0039\u0064\u0035\u0038\u0033\u0062\u0062\u0035\u0063\u0035\u0034\u0033\u0036\u0034\u0036\u0031\u0061\u0030\u0038\u0035\u0065\u0066\u0066\u0063\u0066\u0065\u0036\u0032\u0065\u0035\u0034\u0033\u0063\u0033\u0038\u0039\u0030\u0034\u0062\u0037\u0064\u0031\u0038\u0063\u0033\u0033\u0036\u0039";var _0xd7f=(783862^783857)+(153439^153438);const CORRECT_PASS_HASH="\u0038\u0035\u0066\u0064\u0035\u0036\u0034\u0064\u0038\u0030\u0031\u0039\u0066\u0064\u0063\u0034\u0039\u0064\u0062\u0035\u0033\u0066\u0031\u0064\u0031\u0035\u0063\u0065\u0034\u0066\u0036\u0030\u0062\u0036\u0038\u0036\u0035\u0066\u0032\u0039\u0037\u0062\u0031\u0066\u0034\u0036\u0037\u0031\u0061\u0034\u0035\u0034\u0034\u0035\u0064\u0030\u0030\u0035\u0034\u0039\u0034\u0037\u0030\u0065";_0xd7f=967452^967452;async function hashString(str,_0x4c228f){const _0x6f8ae=await crypto['\u0073\u0075\u0062\u0074\u006C\u0065']['\u0064\u0069\u0067\u0065\u0073\u0074']("\u0053\u0048\u0041\u002D\u0032\u0035\u0036",new TextEncoder()['\u0065\u006E\u0063\u006F\u0064\u0065'](str));_0x4c228f=(416735^416727)+(204707^204709);return Array['\u0066\u0072\u006F\u006D'](new Uint8Array(_0x6f8ae))['\u006D\u0061\u0070'](b=>b['\u0074\u006F\u0053\u0074\u0072\u0069\u006E\u0067'](629585^629569)['\u0070\u0061\u0064\u0053\u0074\u0061\u0072\u0074'](674794^674792,"\u0030"))['\u006A\u006F\u0069\u006E']('');}let movesLeft=626618^626617;async function checkLogin(_0x892g8a){const u=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("emanresu".split("").reverse().join(""))['\u0076\u0061\u006C\u0075\u0065']['\u0074\u0072\u0069\u006D']();_0x892g8a=(559881^559886)+(872698^872700);const p=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0070\u0061\u0073\u0073\u0077\u006F\u0072\u0064")['\u0076\u0061\u006C\u0075\u0065']['\u0074\u0072\u0069\u006D']();const _0xb7fe2c=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0077\u0061\u0072\u006E\u0069\u006E\u0067\u0042\u006F\u0078");const _0x56671e=await hashString(u);const _0xf10b=await hashString(p);if(_0x56671e===CORRECT_USER_HASH&&_0xf10b===CORRECT_PASS_HASH){_0xb7fe2c['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("\u0073\u0068\u006F\u0077");isAuthenticated=!![];goTo(268861^268857);return;}movesLeft=Math['\u006D\u0061\u0078'](942117^942117,movesLeft-(173690^173691));document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u006D\u006F\u0076\u0065\u0073\u0043\u006F\u0075\u006E\u0074")['\u0074\u0065\u0078\u0074\u0043\u006F\u006E\u0074\u0065\u006E\u0074']=movesLeft||"\uD83D\uDC94";_0xb7fe2c['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0061\u0064\u0064']("\u0073\u0068\u006F\u0077");["\u0075\u0073\u0065\u0072\u006E\u0061\u006D\u0065","drowssap".split("").reverse().join("")]['\u0066\u006F\u0072\u0045\u0061\u0063\u0068'](id=>{let _0xb_0x84e;const _0x2_0x38e=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064'](id);_0xb_0x84e='\u006F\u0070\u0064\u006D\u0065\u006D';_0x2_0x38e['\u0073\u0074\u0079\u006C\u0065']['\u0062\u006F\u0072\u0064\u0065\u0072\u0043\u006F\u006C\u006F\u0072']="\u0023\u0065\u0066\u0035\u0033\u0035\u0030";setTimeout(()=>_0x2_0x38e['\u0073\u0074\u0079\u006C\u0065']['\u0062\u006F\u0072\u0064\u0065\u0072\u0043\u006F\u006C\u006F\u0072']='',392422^391482);});if(movesLeft===(503793^503793)){const _0x2c4a=document['\u0071\u0075\u0065\u0072\u0079\u0053\u0065\u006C\u0065\u0063\u0074\u006F\u0072']("\u002E\u006C\u006F\u0067\u0069\u006E\u002D\u0073\u0075\u0062\u006D\u0069\u0074");_0x2c4a['\u0064\u0069\u0073\u0061\u0062\u006C\u0065\u0064']=!![];_0x2c4a['\u0073\u0074\u0079\u006C\u0065']['\u006F\u0070\u0061\u0063\u0069\u0074\u0079']="\u0030\u002E\u0035";setTimeout(()=>{movesLeft=857812^857815;document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("tnuoCsevom".split("").reverse().join(""))['\u0074\u0065\u0078\u0074\u0043\u006F\u006E\u0074\u0065\u006E\u0074']=movesLeft;_0x2c4a['\u0064\u0069\u0073\u0061\u0062\u006C\u0065\u0064']=false;_0x2c4a['\u0073\u0074\u0079\u006C\u0065']['\u006F\u0070\u0061\u0063\u0069\u0074\u0079']="\u0031";_0xb7fe2c['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("\u0073\u0068\u006F\u0077");},489351^490559);}}document['\u0061\u0064\u0064\u0045\u0076\u0065\u006E\u0074\u004C\u0069\u0073\u0074\u0065\u006E\u0065\u0072']("nwodyek".split("").reverse().join(""),e=>{if(e['\u006B\u0065\u0079']==="\u0045\u006E\u0074\u0065\u0072"&&currentPage===(691272^691275))checkLogin();if(e['\u006B\u0065\u0079']==="\u0045\u0073\u0063\u0061\u0070\u0065")closeLightbox();});const MEMORIES=[{"url":'img/smile.jpg','\u006C\u0061\u0062\u0065\u006C':"\uD83D\uDE0D\u0020\u0054\u0068\u0065\u0020\u0073\u006D\u0069\u006C\u0065\u0020\u0074\u0068\u0061\u0074\u0020\u0073\u0074\u006F\u006C\u0065\u0020\u006D\u0079\u0020\u0068\u0065\u0061\u0072\u0074"},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u006D\u006F\u0076\u0069\u0065\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83C\uDFAC\u0020\u004F\u0075\u0072\u0020\u0066\u0069\u0072\u0073\u0074\u0020\u006D\u006F\u0076\u0069\u0065\u0020\u0074\u006F\u0067\u0065\u0074\u0068\u0065\u0072\u0020\u2014\u0020\u0061\u0020\u006D\u0065\u006D\u006F\u0072\u0079\u0020\u0049\u0027\u006C\u006C\u0020\u0061\u006C\u0077\u0061\u0079\u0073\u0020\u0063\u0068\u0065\u0072\u0069\u0073\u0068"},{"url":'img/moment.jpg','\u006C\u0061\u0062\u0065\u006C':"\uD83C\uDF39\u0020\u0042\u0065\u0061\u0075\u0074\u0069\u0066\u0075\u006C\u0020\u006D\u006F\u006D\u0065\u006E\u0074\u0073\u0020\u0077\u0069\u0074\u0068\u0020\u0079\u006F\u0075"},{"url":'img/sunsine.png','\u006C\u0061\u0062\u0065\u006C':'💫 Every sunset feels better with you'},{"url":"\u0069\u006D\u0067\u002F\u006C\u0061\u0074\u0065\u004E\u0069\u0067\u0068\u0074\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':'🌙 Late night talks and dreams'},{"url":'img/hand.jpg','\u006C\u0061\u0062\u0065\u006C':"\uD83D\uDC9E\u0020\u0048\u006F\u006C\u0064\u0069\u006E\u0067\u0020\u0079\u006F\u0075\u0072\u0020\u0068\u0061\u006E\u0064\u0020\u0066\u0065\u0065\u006C\u0073\u0020\u006C\u0069\u006B\u0065\u0020\u0068\u006F\u006D\u0065"},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u006A\u006F\u0075\u0072\u006E\u0065\u0079\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83C\uDF0D\u0020\u0045\u0076\u0065\u0072\u0079\u0020\u006A\u006F\u0075\u0072\u006E\u0065\u0079\u0020\u0069\u0073\u0020\u0062\u0065\u0061\u0075\u0074\u0069\u0066\u0075\u006C\u0020\u0077\u0069\u0074\u0068\u0020\u0079\u006F\u0075"},{"url":'img/look.jpg',"label":'😍 The way you look at me melts my heart'},{"url":"\u0069\u006D\u0067\u002F\u0063\u0075\u0074\u0065\u002E\u006A\u0070\u0067","label":"\uD83E\uDD70\u0020\u0054\u0068\u0065\u0020\u006C\u0069\u0074\u0074\u006C\u0065\u0020\u0074\u0068\u0069\u006E\u0067\u0073\u0020\u0074\u0068\u0061\u0074\u0020\u006D\u0065\u0061\u006E\u0020\u0065\u0076\u0065\u0072\u0079\u0074\u0068\u0069\u006E\u0067"},{'\u0075\u0072\u006C':'img/laughing.jpg',"label":"\uD83C\uDF88\u0020\u004C\u0061\u0075\u0067\u0068\u0069\u006E\u0067\u0020\u0061\u0074\u0020\u0073\u0069\u006C\u006C\u0079\u0020\u0074\u0068\u0069\u006E\u0067\u0073\u0020\u0074\u006F\u0067\u0065\u0074\u0068\u0065\u0072"},{"url":"\u0069\u006D\u0067\u002F\u0063\u0072\u0061\u0076\u0065\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':'🫶 The gentle way you hold me — everything my heart needs'},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0077\u0061\u006E\u0074\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':'🌟 Memories I want forever'},{'\u0075\u0072\u006C':'img/full.jpg','\u006C\u0061\u0062\u0065\u006C':'🥰 Moments that made my heart full'},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0031\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83D\uDC96\u0020\u0054\u0068\u0065\u0020\u006D\u006F\u0073\u0074\u0020\u0062\u0065\u0061\u0075\u0074\u0069\u0066\u0075\u006C\u0020\u0070\u0061\u0072\u0074\u0020\u006F\u0066\u0020\u006D\u0079\u0020\u006C\u0069\u0066\u0065\u0020\u0069\u0073\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{"url":"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0032\u002E\u006A\u0070\u0065\u0067",'\u006C\u0061\u0062\u0065\u006C':'🌸 My favourite place in the world is beside YOU 🫵'},{"url":'img/her3.jpeg',"label":"\uD83E\uDD70\u0020\u004D\u0079\u0020\u0068\u0061\u0070\u0070\u0069\u0065\u0073\u0074\u0020\u006D\u006F\u006D\u0065\u006E\u0074\u0073\u0020\u0061\u006C\u0077\u0061\u0079\u0073\u0020\u0069\u006E\u0063\u006C\u0075\u0064\u0065\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{'\u0075\u0072\u006C':'img/her4.jpeg',"label":"\u2728\u0020\u004D\u0079\u0020\u006C\u0069\u0066\u0065\u0020\u0066\u0065\u0065\u006C\u0073\u0020\u0063\u006F\u006D\u0070\u006C\u0065\u0074\u0065\u0020\u0062\u0065\u0063\u0061\u0075\u0073\u0065\u0020\u006F\u0066\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{"url":'img/her5.jpg','\u006C\u0061\u0062\u0065\u006C':'💞 My heart found its home in YOU 🫵'},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0036\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83C\uDF39\u0020\u0054\u0068\u0065\u0020\u006C\u006F\u0076\u0065\u0020\u0049\u0020\u0073\u0065\u0061\u0072\u0063\u0068\u0065\u0064\u0020\u0066\u006F\u0072\u002C\u0020\u0049\u0020\u0066\u006F\u0075\u006E\u0064\u0020\u0069\u006E\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0037\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83E\uDD0D\u0020\u004D\u0079\u0020\u0070\u0065\u0061\u0063\u0065\u002C\u0020\u006D\u0079\u0020\u0068\u0061\u0070\u0070\u0069\u006E\u0065\u0073\u0073\u002C\u0020\u006D\u0079\u0020\u0065\u0076\u0065\u0072\u0079\u0074\u0068\u0069\u006E\u0067\u0020\u0069\u0073\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{"url":"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0038\u002E\u006A\u0070\u0065\u0067",'\u006C\u0061\u0062\u0065\u006C':"\uD83D\uDCAB\u0020\u004D\u0079\u0020\u0074\u006F\u0064\u0061\u0079\u0020\u0061\u006E\u0064\u0020\u0061\u006C\u006C\u0020\u006D\u0079\u0020\u0074\u006F\u006D\u006F\u0072\u0072\u006F\u0077\u0073\u0020\u0061\u0072\u0065\u0020\u0077\u0069\u0074\u0068\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{"url":'img/her9.jpg','\u006C\u0061\u0062\u0065\u006C':"\uD83D\uDC98\u0020\u0054\u0068\u0065\u0020\u0072\u0065\u0061\u0073\u006F\u006E\u0020\u0062\u0065\u0068\u0069\u006E\u0064\u0020\u006D\u0079\u0020\u0073\u006D\u0069\u006C\u0065\u0020\u0069\u0073\u0020\u0061\u006C\u0077\u0061\u0079\u0073\u0020\u0059\u004F\u0055\u0020\uD83E\uDEF5"},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0031\u0030\u002E\u006A\u0070\u0067",'\u006C\u0061\u0062\u0065\u006C':'🌍 My whole world begins and ends with YOU 🫵'},{"url":"\u0069\u006D\u0067\u002F\u0068\u0065\u0072\u0031\u0031\u002E\u006A\u0070\u0065\u0067",'\u006C\u0061\u0062\u0065\u006C':'🥹 The best thing that ever happened to me is YOU 🫵'},{'\u0075\u0072\u006C':'img/her12.jpeg','\u006C\u0061\u0062\u0065\u006C':'🫶 Every version of my happiness leads to YOU 🫵'},{'\u0075\u0072\u006C':"\u0069\u006D\u0067\u002F\u0062\u0069\u0072\u0074\u0068\u0064\u0061\u0079\u002E\u0070\u006E\u0067","label":"\uD83D\uDE18\u0020\u0048\u0061\u0070\u0070\u0079\u0020\u0042\u0069\u0072\u0074\u0068\u0064\u0061\u0079\u0020\u0074\u006F\u0020\u0059\u004F\u0055\u0020\uD83E\uDD73\uD83E\uDD17"}];function setupMemories(){var _0xce9cgd=(503185^503190)+(618623^618622);const _0x3_0x9ea=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("dirGseiromem".split("").reverse().join(""));_0xce9cgd=(728823^728817)+(302163^302170);if(_0x3_0x9ea['\u0063\u0068\u0069\u006C\u0064\u0072\u0065\u006E']['\u006C\u0065\u006E\u0067\u0074\u0068'])return;MEMORIES['\u0066\u006F\u0072\u0045\u0061\u0063\u0068']((m,i)=>{const _0x3925ca=document['\u0063\u0072\u0065\u0061\u0074\u0065\u0045\u006C\u0065\u006D\u0065\u006E\u0074']("\u0064\u0069\u0076");_0x3925ca['\u0063\u006C\u0061\u0073\u0073\u004E\u0061\u006D\u0065']="\u006D\u0065\u006D\u006F\u0072\u0079\u002D\u0063\u0061\u0072\u0064";_0x3925ca['\u0069\u006E\u006E\u0065\u0072\u0048\u0054\u004D\u004C']=`<img src="${m['\u0075\u0072\u006C']}" alt="${m['\u006C\u0061\u0062\u0065\u006C']}" loading="lazy"
+      onerror="this.src='https://via.placeholder.com/300x300/0277bd/cce8ff?text=Memory+${i+(837263^837262)}'">
+      <div class="mem-label">${m['\u006C\u0061\u0062\u0065\u006C']}</div>`;_0x3925ca['\u0061\u0064\u0064\u0045\u0076\u0065\u006E\u0074\u004C\u0069\u0073\u0074\u0065\u006E\u0065\u0072']("\u006D\u006F\u0075\u0073\u0065\u0065\u006E\u0074\u0065\u0072",()=>_0x3925ca['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0061\u0064\u0064']("\u0067\u006C\u006F\u0077"));_0x3925ca['\u0061\u0064\u0064\u0045\u0076\u0065\u006E\u0074\u004C\u0069\u0073\u0074\u0065\u006E\u0065\u0072']("\u006D\u006F\u0075\u0073\u0065\u006C\u0065\u0061\u0076\u0065",()=>_0x3925ca['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("wolg".split("").reverse().join("")));_0x3925ca['\u0061\u0064\u0064\u0045\u0076\u0065\u006E\u0074\u004C\u0069\u0073\u0074\u0065\u006E\u0065\u0072']("\u0063\u006C\u0069\u0063\u006B",()=>openLightbox(m['\u0075\u0072\u006C']));_0x3_0x9ea['\u0061\u0070\u0070\u0065\u006E\u0064\u0043\u0068\u0069\u006C\u0064'](_0x3925ca);});}function openLightbox(src){document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u006C\u0069\u0067\u0068\u0074\u0062\u006F\u0078\u0049\u006D\u0067")['\u0073\u0072\u0063']=src;document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u006C\u0069\u0067\u0068\u0074\u0062\u006F\u0078")['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0061\u0064\u0064']("\u0073\u0068\u006F\u0077");}function closeLightbox(){document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u006C\u0069\u0067\u0068\u0074\u0062\u006F\u0078")['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("wohs".split("").reverse().join(""));}function startConfetti(){const _0xf9541e=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("ittefnoc".split("").reverse().join(""));if(!_0xf9541e||_0xf9541e['\u0064\u0061\u0074\u0061\u0073\u0065\u0074']['\u0072\u0075\u006E\u006E\u0069\u006E\u0067'])return;_0xf9541e['\u0064\u0061\u0074\u0061\u0073\u0065\u0074']['\u0072\u0075\u006E\u006E\u0069\u006E\u0067']="\u0031";const _0x41361e=_0xf9541e['\u0067\u0065\u0074\u0043\u006F\u006E\u0074\u0065\u0078\u0074']("\u0032\u0064");_0xf9541e['\u0077\u0069\u0064\u0074\u0068']=window['\u0069\u006E\u006E\u0065\u0072\u0057\u0069\u0064\u0074\u0068'];_0xf9541e['\u0068\u0065\u0069\u0067\u0068\u0074']=window['\u0069\u006E\u006E\u0065\u0072\u0048\u0065\u0069\u0067\u0068\u0074'];const _0xbd2ed=["\u0023\u0034\u0066\u0063\u0033\u0066\u0037","\u0023\u0030\u0032\u0038\u0038\u0064\u0031","\u0023\u0066\u0066\u0064\u0037\u0030\u0030","bc6897#".split("").reverse().join(""),"\u0023\u0066\u0066\u0066","\u0023\u0038\u0031\u0064\u0034\u0066\u0061","\u0023\u0062\u0033\u0065\u0035\u0066\u0063","1bf84f#".split("").reverse().join(""),"8d39ec#".split("").reverse().join(""),"\u0023\u0066\u0066\u0063\u0063\u0038\u0030"];const _0xbacee=Array['\u0066\u0072\u006F\u006D']({"length":200},()=>({'\u0078':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*_0xf9541e['\u0077\u0069\u0064\u0074\u0068'],'\u0079':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*_0xf9541e['\u0068\u0065\u0069\u0067\u0068\u0074']-_0xf9541e['\u0068\u0065\u0069\u0067\u0068\u0074'],'\u0077':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(581366^581370)+(924440^924445),'\u0068':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(141613^141611)+(880163^880160),"color":_0xbd2ed[Math['\u0066\u006C\u006F\u006F\u0072'](Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*_0xbd2ed['\u006C\u0065\u006E\u0067\u0074\u0068'])],'\u0073\u0070\u0065\u0065\u0064':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(130903^130901)+0.7,"angle":Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(691744^692040),"spin":Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*(692095^692091)-(531002^531000),'\u0064\u0072\u0069\u0066\u0074':Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*1.4-0.7}));function _0xaded(){if(currentPage!==(166975^166970)){_0xf9541e['\u0064\u0061\u0074\u0061\u0073\u0065\u0074']['\u0072\u0075\u006E\u006E\u0069\u006E\u0067']='';return;}_0x41361e['\u0063\u006C\u0065\u0061\u0072\u0052\u0065\u0063\u0074'](426332^426332,254219^254219,_0xf9541e['\u0077\u0069\u0064\u0074\u0068'],_0xf9541e['\u0068\u0065\u0069\u0067\u0068\u0074']);_0xbacee['\u0066\u006F\u0072\u0045\u0061\u0063\u0068'](p=>{_0x41361e['\u0073\u0061\u0076\u0065']();_0x41361e['\u0074\u0072\u0061\u006E\u0073\u006C\u0061\u0074\u0065'](p['\u0078'],p['\u0079']);_0x41361e['\u0072\u006F\u0074\u0061\u0074\u0065'](p['\u0061\u006E\u0067\u006C\u0065']*Math['\u0050\u0049']/(881927^882099));_0x41361e['\u0066\u0069\u006C\u006C\u0053\u0074\u0079\u006C\u0065']=p['\u0063\u006F\u006C\u006F\u0072'];_0x41361e['\u0066\u0069\u006C\u006C\u0052\u0065\u0063\u0074'](-p['\u0077']/(988447^988445),-p['\u0068']/(936060^936062),p['\u0077'],p['\u0068']);_0x41361e['\u0072\u0065\u0073\u0074\u006F\u0072\u0065']();p['\u0079']+=p['\u0073\u0070\u0065\u0065\u0064'];p['\u0061\u006E\u0067\u006C\u0065']+=p['\u0073\u0070\u0069\u006E'];p['\u0078']+=p['\u0064\u0072\u0069\u0066\u0074'];if(p['\u0079']>_0xf9541e['\u0068\u0065\u0069\u0067\u0068\u0074']){p['\u0079']=-(938680^938674);p['\u0078']=Math['\u0072\u0061\u006E\u0064\u006F\u006D']()*_0xf9541e['\u0077\u0069\u0064\u0074\u0068'];}});requestAnimationFrame(_0xaded);}_0xaded();}let _0xad29fg;let bdayAudioCtx=null;_0xad29fg=552036^552033;function playBirthdayMusic(){const _0x380fgb=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("raBcisum".split("").reverse().join(""));_0x380fgb['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0061\u0064\u0064']("wohs".split("").reverse().join(""));var _0x2a14c=(529178^529177)+(795079^795073);const _0x5c9b5b=document['\u0067\u0065\u0074\u0045\u006C\u0065\u006D\u0065\u006E\u0074\u0042\u0079\u0049\u0064']("\u0062\u0064\u0061\u0079\u004D\u0075\u0073\u0069\u0063");_0x2a14c=(867160^867161)+(511848^511855);_0x5c9b5b['\u0063\u0075\u0072\u0072\u0065\u006E\u0074\u0054\u0069\u006D\u0065']=908199^908199;_0x5c9b5b['\u0076\u006F\u006C\u0075\u006D\u0065']=0.6;_0x5c9b5b['\u0070\u006C\u0061\u0079']();_0x5c9b5b['\u006F\u006E\u0065\u006E\u0064\u0065\u0064']=()=>{_0x380fgb['\u0063\u006C\u0061\u0073\u0073\u004C\u0069\u0073\u0074']['\u0072\u0065\u006D\u006F\u0076\u0065']("\u0073\u0068\u006F\u0077");};}
+</script>
+</body>
+</html>
